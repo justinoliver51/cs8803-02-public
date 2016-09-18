@@ -57,10 +57,9 @@ def save_results(results, logdir):
     if results.find("failed") >= 0:
         if not os.path.exists(logdir):
             os.makedirs(logdir)
-        new_path = logdir + "/".join(path.split('/')[1:])
 
-        path = os.path.join(os.getcwd(), path)
-        new_path = os.path.join(os.getcwd(), new_path)
+        path = os.getcwd() + '/' + path
+        new_path = os.getcwd() + '/' + logdir + "/".join(path.split('/')[1:])
         os.rename(path, new_path)
         return 0
     else:
