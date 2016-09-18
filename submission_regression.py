@@ -59,7 +59,7 @@ def save_results(results, logdir):
             os.makedirs(logdir)
 
         if logdir.startswith('/'):
-            new_path = logdir + "/".join(path.split('/')[1:])
+            new_path = logdir + '/' + "/".join(path.split('/')[1:])
         else:
             new_path = os.getcwd() + '/' + logdir + "/".join(path.split('/')[1:])
         path = os.getcwd() + '/' + path
