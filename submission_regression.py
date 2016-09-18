@@ -58,8 +58,11 @@ def save_results(results, logdir):
         if not os.path.exists(logdir):
             os.makedirs(logdir)
 
+        if logdir.startswith('/'):
+            new_path = logdir + "/".join(path.split('/')[1:])
+        else:
+            new_path = os.getcwd() + '/' + logdir + "/".join(path.split('/')[1:])
         path = os.getcwd() + '/' + path
-        new_path = os.getcwd() + '/' + logdir + "/".join(path.split('/')[1:])
         os.rename(path, new_path)
         return 0
     else:
