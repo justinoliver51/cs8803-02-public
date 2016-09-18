@@ -15,7 +15,6 @@ The test is stopped when Ctrl-C is typed in the keyboard.
 __author__ = "Justin Oliver"
 __email__ = "justin.oliver@gatech.edu"
 
-from io import TextIOWrapper
 from optparse import OptionParser
 import os
 from subprocess import check_output
@@ -23,6 +22,9 @@ import sys
 
 
 def call_process(command):
+    """
+    Performs the terminal command and returns the output.
+    """
     return check_output(command)
 
 
@@ -44,8 +46,9 @@ def print_results(results, test_num):
     Prints the results of the run.
     """
     print "\n*** RESULTS: ***\n"
+    print "Project      Number Passed / Total
     for proj, num_passed in results.iteritems():
-        print "{pr}:      {n}/{t}".format(pr=proj, n=num_passed, t=test_num)
+        print "{pr}:      {n} / {t}".format(pr=proj, n=num_passed, t=test_num)
 
 
 def save_results(results, logdir):
