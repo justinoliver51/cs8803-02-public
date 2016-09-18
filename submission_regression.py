@@ -58,7 +58,7 @@ def save_results(results, logdir):
         if not os.path.exists(logdir):
             os.makedirs(logdir)
         new_path = "logdir/" + path
-        os.move(path, new_path)
+        os.rename(path, new_path)
         return 0
     else:
         os.remove(path)
