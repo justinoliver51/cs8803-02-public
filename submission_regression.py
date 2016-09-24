@@ -19,6 +19,7 @@ from optparse import OptionParser
 import os
 from subprocess import check_output
 import sys
+import time
 
 
 def call_process(command):
@@ -46,7 +47,7 @@ def print_results(results, test_num):
     Prints the results of the run.
     """
     print "\n*** RESULTS: ***\n"
-    print "Project      Number Passed / Total
+    print "Project      Number Passed / Total"
     for proj, num_passed in results.iteritems():
         print "{pr}:      {n} / {t}".format(pr=proj, n=num_passed, t=test_num)
 
@@ -85,11 +86,12 @@ def main():
         print "Test started... To complete, hit ctrl-c"
         while True:
             for proj in projects:
+                time.sleep(1.0)
                 command = ["python", "submit.py", proj]
                 result = call_process(command)
                 results[proj] += save_results(result, opts.logdir)
             test_num += 1
-    except KeyboardInterrupt:
+    except (Exception, KeyboardInterrupt):
         # End of run, print results
         print_results(results, test_num)
         sys.exit(0)
